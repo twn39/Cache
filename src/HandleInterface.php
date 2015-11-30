@@ -36,7 +36,6 @@ interface HandleInterface
      */
     public function setMulti(array $items, $seconds);
 
-
     /**
      * Add an item under a new key,
      * but the operation fails if the key already exists on the server.
