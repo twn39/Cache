@@ -1,0 +1,28 @@
+{
+  "name": "monster/cache",
+  "description": "A lightweight cache library",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Tang Weinan",
+      "email": "twn39@163.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.4.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "5.2.x-dev",
+    "predis/predis": "v1.0.3",
+    "mockery/mockery": "0.9.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "Monster\\Cache\\": "src/"
+    }
+  },
+  "suggest": {
+    "predis/predis": "v1.0.3"
+  }
+}
