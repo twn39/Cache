@@ -4,6 +4,7 @@ namespace Monster\Cache\Handlers;
 
 class Redis extends Handler
 {
+    private $predis;
     /**
      * Redis constructor.
      *
@@ -11,7 +12,28 @@ class Redis extends Handler
      */
     public function __construct(\Predis $redis)
     {
-        $this->handler = $redis;
+        $this->predis = $redis;
+    }
+
+
+    /**
+     * @param $key
+     * @param $value
+     * @param $seconds
+     * @return mixed
+     */
+    public function set($key, $value, $seconds)
+    {
+        return $this->predis->set($key, $value, $seconds);
+    }
+
+    /**
+     * @param $key
+     * @return mixed
+     */
+    public function get($key)
+    {
+        return $this->predis->get($key);
     }
 
     /**
@@ -21,7 +43,7 @@ class Redis extends Handler
      */
     public function getMulti(array $keys)
     {
-        // TODO: Implement getMulti() method.
+        return $this->predis->mget($keys);
     }
 
     /**
@@ -32,7 +54,7 @@ class Redis extends Handler
      */
     public function setMulti(array $items, $seconds)
     {
-        // TODO: Implement setMulti() method.
+        return $this->predis->mset($items);
     }
 
     /**
@@ -41,47 +63,39 @@ class Redis extends Handler
      *
      * @param $key
      * @param $value
-     * @param $ttl
+     * @param $seconds
      *
      * @return mixed
      */
-    public function add($key, $value, $ttl)
+    public function add($key, $value, $seconds)
     {
-        // TODO: Implement add() method.
+        if (!$this->exists($key)) {
+            $this->set($key, $value, $seconds);
+        }
+
+        return true;
     }
 
     /**
      * @param $key
-     * @param $value
-     * @param $ttl
+     * @param $offset
      *
      * @return mixed
      */
-    public function replace($key, $value, $ttl)
+    public function increment($key, $offset = 1)
     {
-        // TODO: Implement replace() method.
+        return $this->predis->incrby($key, $offset);
     }
 
     /**
      * @param $key
-     * @param $value
+     * @param $offset
      *
      * @return mixed
      */
-    public function increment($key, $value)
+    public function decrement($key, $offset = 1)
     {
-        // TODO: Implement increment() method.
-    }
-
-    /**
-     * @param $key
-     * @param $value
-     *
-     * @return mixed
-     */
-    public function decrement($key, $value)
-    {
-        // TODO: Implement decrement() method.
+        return $this->predis->decrby($key, $offset);
     }
 
     /**
@@ -91,7 +105,7 @@ class Redis extends Handler
      */
     public function delete($key)
     {
-        // TODO: Implement delete() method.
+        return $this->predis->del($key);
     }
 
     /**
@@ -99,31 +113,27 @@ class Redis extends Handler
      */
     public function flush()
     {
-        // TODO: Implement flush() method.
+        return $this->predis->flushdb();
     }
 
     /**
      * Set a new expiration value on the given key.
      *
      * @param $key
-     * @param $ttl
+     * @param $seconds
      *
      * @return mixed
      */
-    public function touch($key, $ttl)
+    public function touch($key, $seconds)
     {
-        // TODO: Implement touch() method.
-    }
+        if ($this->exists($key)) {
+            $value = $this->get($key);
+            $this->set($key, $value, $seconds);
+        } else {
+            $this->set($key, '', $seconds);
+        }
 
-    /**
-     * @param $key
-     * @param $value
-     *
-     * @return mixed
-     */
-    public function forever($key, $value)
-    {
-        // TODO: Implement forever() method.
+        return true;
     }
 
     /**
@@ -133,6 +143,6 @@ class Redis extends Handler
      */
     public function exists($key)
     {
-        // TODO: Implement exists() method.
+        return $this->predis->exists($key);
     }
 }
