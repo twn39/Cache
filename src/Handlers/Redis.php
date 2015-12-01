@@ -15,11 +15,11 @@ class Redis extends Handler
         $this->predis = $redis;
     }
 
-
     /**
      * @param $key
      * @param $value
      * @param $seconds
+     *
      * @return mixed
      */
     public function set($key, $value, $seconds)
@@ -29,6 +29,7 @@ class Redis extends Handler
 
     /**
      * @param $key
+     *
      * @return mixed
      */
     public function get($key)
