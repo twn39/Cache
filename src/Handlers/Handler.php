@@ -6,29 +6,13 @@ use Monster\Cache\HandleInterface;
 
 abstract class Handler implements HandleInterface
 {
-    protected $handler;
+    abstract public function set($key, $value, $seconds);
 
-    /**
-     * @param $key
-     *
-     * @return mixed
-     */
-    public function get($key)
-    {
-        return $this->handler->get($key);
-    }
+    abstract public function get($key);
 
-    /**
-     * @param $key
-     * @param $value
-     * @param $seconds
-     *
-     * @return bool
-     */
-    public function set($key, $value, $seconds)
-    {
-        $expiration = time() + $seconds;
+    abstract public function increment($key, $value);
 
-        return $this->handler->set($key, $value, $expiration);
-    }
+    abstract public function decrement($key, $value);
+
+    abstract public function flush();
 }
