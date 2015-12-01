@@ -6,11 +6,11 @@ use Monster\Cache\HandleInterface;
 
 abstract class Handler implements HandleInterface
 {
-
     protected $handler;
 
     /**
      * @param $key
+     *
      * @return mixed
      */
     public function get($key)
@@ -22,6 +22,7 @@ abstract class Handler implements HandleInterface
      * @param $key
      * @param $value
      * @param $seconds
+     *
      * @return bool
      */
     public function set($key, $value, $seconds)

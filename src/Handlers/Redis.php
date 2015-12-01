@@ -4,10 +4,9 @@ namespace Monster\Cache\Handlers;
 
 class Redis extends Handler
 {
-
-
     /**
      * Redis constructor.
+     *
      * @param \Predis $redis
      */
     public function __construct(\Predis $redis)
@@ -17,6 +16,7 @@ class Redis extends Handler
 
     /**
      * @param array $keys
+     *
      * @return mixed
      */
     public function getMulti(array $keys)
@@ -26,7 +26,8 @@ class Redis extends Handler
 
     /**
      * @param array $items
-     * @param int $seconds
+     * @param int   $seconds
+     *
      * @return mixed
      */
     public function setMulti(array $items, $seconds)
@@ -41,6 +42,7 @@ class Redis extends Handler
      * @param $key
      * @param $value
      * @param $ttl
+     *
      * @return mixed
      */
     public function add($key, $value, $ttl)
@@ -52,6 +54,7 @@ class Redis extends Handler
      * @param $key
      * @param $value
      * @param $ttl
+     *
      * @return mixed
      */
     public function replace($key, $value, $ttl)
@@ -62,6 +65,7 @@ class Redis extends Handler
     /**
      * @param $key
      * @param $value
+     *
      * @return mixed
      */
     public function increment($key, $value)
@@ -72,6 +76,7 @@ class Redis extends Handler
     /**
      * @param $key
      * @param $value
+     *
      * @return mixed
      */
     public function decrement($key, $value)
@@ -81,6 +86,7 @@ class Redis extends Handler
 
     /**
      * @param $key
+     *
      * @return mixed
      */
     public function delete($key)
@@ -101,6 +107,7 @@ class Redis extends Handler
      *
      * @param $key
      * @param $ttl
+     *
      * @return mixed
      */
     public function touch($key, $ttl)
@@ -111,6 +118,7 @@ class Redis extends Handler
     /**
      * @param $key
      * @param $value
+     *
      * @return mixed
      */
     public function forever($key, $value)
@@ -120,6 +128,7 @@ class Redis extends Handler
 
     /**
      * @param $key
+     *
      * @return mixed
      */
     public function exists($key)

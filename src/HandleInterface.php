@@ -4,34 +4,37 @@ namespace Monster\Cache;
 
 interface HandleInterface
 {
-
     /**
-     * get cache
+     * get cache.
      *
      * @param $key
+     *
      * @return mixed
      */
     public function get($key);
 
     /**
      * @param array $keys
+     *
      * @return mixed
      */
     public function getMulti(array $keys);
 
     /**
-     * set cache
+     * set cache.
      *
      * @param $key
      * @param $value
      * @param $ttl
+     *
      * @return mixed
      */
     public function set($key, $value, $ttl);
 
     /**
      * @param array $items
-     * @param int $seconds
+     * @param int   $seconds
+     *
      * @return mixed
      */
     public function setMulti(array $items, $seconds);
@@ -43,6 +46,7 @@ interface HandleInterface
      * @param $key
      * @param $value
      * @param $ttl
+     *
      * @return mixed
      */
     public function add($key, $value, $ttl);
@@ -50,6 +54,7 @@ interface HandleInterface
     /**
      * @param $key
      * @param $value
+     *
      * @return mixed
      */
     public function increment($key, $value);
@@ -57,12 +62,14 @@ interface HandleInterface
     /**
      * @param $key
      * @param $value
+     *
      * @return mixed
      */
     public function decrement($key, $value);
 
     /**
      * @param $key
+     *
      * @return mixed
      */
     public function delete($key);
@@ -77,14 +84,15 @@ interface HandleInterface
      *
      * @param $key
      * @param $ttl
+     *
      * @return mixed
      */
     public function touch($key, $ttl);
 
     /**
      * @param $key
+     *
      * @return mixed
      */
     public function exists($key);
-
 }

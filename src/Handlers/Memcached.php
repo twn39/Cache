@@ -8,6 +8,7 @@ class Memcached extends Handler
 
     /**
      * Memcached constructor.
+     *
      * @param \Memcached $memcached
      */
     public function __construct(\Memcached $memcached)
@@ -17,6 +18,7 @@ class Memcached extends Handler
 
     /**
      * @param $key
+     *
      * @return mixed
      */
     public function get($key)
@@ -28,6 +30,7 @@ class Memcached extends Handler
      * @param $key
      * @param $value
      * @param $seconds
+     *
      * @return bool
      */
     public function set($key, $value, $seconds)
@@ -37,6 +40,7 @@ class Memcached extends Handler
 
     /**
      * @param array $keys
+     *
      * @return mixed
      */
     public function getMulti(array $keys)
@@ -46,7 +50,8 @@ class Memcached extends Handler
 
     /**
      * @param array $items
-     * @param int $seconds
+     * @param int   $seconds
+     *
      * @return bool
      */
     public function setMulti(array $items, $seconds)
@@ -57,6 +62,7 @@ class Memcached extends Handler
     /**
      * @param $key
      * @param int $offset
+     *
      * @return int
      */
     public function decrement($key, $offset = 1)
@@ -67,6 +73,7 @@ class Memcached extends Handler
     /**
      * @param $key
      * @param int $offset
+     *
      * @return int
      */
     public function increment($key, $offset = 1)
@@ -78,12 +85,12 @@ class Memcached extends Handler
      * @param $key
      * @param $value
      * @param $seconds
+     *
      * @return bool
      */
     public function add($key, $value, $seconds)
     {
         return $this->memcached->add($key, $value, $seconds);
-
     }
 
     /**
@@ -97,6 +104,7 @@ class Memcached extends Handler
     /**
      * @param $key
      * @param $seconds
+     *
      * @return bool
      */
     public function touch($key, $seconds)
@@ -106,6 +114,7 @@ class Memcached extends Handler
 
     /**
      * @param $key
+     *
      * @return bool
      */
     public function delete($key)
@@ -115,6 +124,7 @@ class Memcached extends Handler
 
     /**
      * @param $key
+     *
      * @return mixed
      */
     public function exists($key)

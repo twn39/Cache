@@ -6,11 +6,11 @@ use Monster\Cache\Handlers\Handler;
 
 class Cache
 {
-
     private $handler;
 
     /**
      * Cache constructor.
+     *
      * @param Handler $handler
      */
     public function __construct(Handler $handler)
@@ -22,6 +22,7 @@ class Cache
      * @param $key
      * @param $value
      * @param $seconds
+     *
      * @return bool
      */
     public function set($key, $value, $seconds)
@@ -31,6 +32,7 @@ class Cache
 
     /**
      * @param $key
+     *
      * @return mixed
      */
     public function get($key)
@@ -41,6 +43,7 @@ class Cache
     /**
      * @param $key
      * @param int $offset
+     *
      * @return int
      */
     public function increment($key, $offset = 1)
@@ -51,6 +54,7 @@ class Cache
     /**
      * @param $key
      * @param int $offset
+     *
      * @return int
      */
     public function decrement($key, $offset = 1)
@@ -61,6 +65,7 @@ class Cache
     /**
      * @param $key
      * @param $value
+     *
      * @return bool
      */
     public function forever($key, $value)
@@ -70,6 +75,7 @@ class Cache
 
     /**
      * @param $key
+     *
      * @return mixed
      */
     public function forget($key)
@@ -79,6 +85,7 @@ class Cache
 
     /**
      * @param $key
+     *
      * @return mixed
      */
     public function delete($key)
@@ -92,16 +99,15 @@ class Cache
      * @param $key
      * @param $seconds
      * @param \Closure $callback
+     *
      * @return mixed
      */
     public function remember($key, $seconds, \Closure $callback)
     {
         $value = $this->get($key);
         if ($value !== false) {
-
             return $value;
         } else {
-
             $this->set($key, $value = $callback(), $seconds);
 
             return $value;
@@ -111,6 +117,7 @@ class Cache
     /**
      * @param $key
      * @param \Closure $callback
+     *
      * @return mixed
      */
     public function rememberForever($key, \Closure $callback)
@@ -128,6 +135,7 @@ class Cache
     /**
      * @param $key
      * @param \Closure $callback
+     *
      * @return mixed
      */
     public function sear($key, \Closure $callback)
@@ -137,6 +145,7 @@ class Cache
 
     /**
      * @param $key
+     *
      * @return mixed
      */
     public function exists($key)
@@ -146,6 +155,7 @@ class Cache
 
     /**
      * @param $key
+     *
      * @return mixed
      */
     public function has($key)
@@ -155,6 +165,7 @@ class Cache
 
     /**
      * @param $key
+     *
      * @return mixed
      */
     public function pull($key)
@@ -165,4 +176,3 @@ class Cache
         return $value;
     }
 }
-

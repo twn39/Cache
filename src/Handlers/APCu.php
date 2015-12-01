@@ -4,7 +4,6 @@ namespace Monster\Cache\Handlers;
 
 class APCu extends Handler
 {
-
     private $apcu;
 
     public function __construct()
@@ -12,12 +11,13 @@ class APCu extends Handler
         $this->apcu = function_exists('apcu_fetch');
 
         if (!$this->apcu) {
-            throw new \Exception("The APCu module is not loaded!");
+            throw new \Exception('The APCu module is not loaded!');
         }
     }
 
     /**
      * @param $key
+     *
      * @return bool
      */
     public function exists($key)
@@ -28,6 +28,7 @@ class APCu extends Handler
      * @param $key
      * @param $value
      * @param $seconds
+     *
      * @return mixed
      */
     public function set($key, $value, $seconds)
@@ -37,6 +38,7 @@ class APCu extends Handler
 
     /**
      * @param $key
+     *
      * @return mixed
      */
     public function get($key)
@@ -46,6 +48,7 @@ class APCu extends Handler
 
     /**
      * @param array $keys
+     *
      * @return mixed
      */
     public function getMulti(array $keys)
@@ -55,7 +58,8 @@ class APCu extends Handler
 
     /**
      * @param array $items
-     * @param int $seconds
+     * @param int   $seconds
+     *
      * @return bool
      */
     public function setMulti(array $items, $seconds)
@@ -74,6 +78,7 @@ class APCu extends Handler
      * @param $key
      * @param $value
      * @param $seconds
+     *
      * @return mixed
      */
     public function add($key, $value, $seconds)
@@ -88,6 +93,7 @@ class APCu extends Handler
     /**
      * @param $key
      * @param $offset
+     *
      * @return int
      */
     public function increment($key, $offset = 1)
@@ -98,6 +104,7 @@ class APCu extends Handler
     /**
      * @param $key
      * @param $offset
+     *
      * @return int
      */
     public function decrement($key, $offset = 1)
@@ -107,6 +114,7 @@ class APCu extends Handler
 
     /**
      * @param $key
+     *
      * @return mixed
      */
     public function delete($key)
@@ -127,22 +135,18 @@ class APCu extends Handler
      *
      * @param $key
      * @param $seconds
+     *
      * @return mixed
      */
     public function touch($key, $seconds)
     {
         if ($this->exists($key)) {
-
             $data = $this->get($key);
             $this->set($key, $data, $seconds);
-
         } else {
-
             $this->set($key, '', $seconds);
-
         }
 
         return true;
     }
-
 }
