@@ -2,15 +2,17 @@
 
 namespace Monster\Cache\Handlers;
 
+use \Predis\Client;
+
 class Redis extends Handler
 {
     private $predis;
+
     /**
      * Redis constructor.
-     *
-     * @param \Predis $redis
+     * @param Client $redis
      */
-    public function __construct(\Predis $redis)
+    public function __construct(Client $redis)
     {
         $this->predis = $redis;
     }
@@ -24,7 +26,14 @@ class Redis extends Handler
      */
     public function set($key, $value, $seconds)
     {
-        return $this->predis->set($key, $value, $seconds);
+        if ($seconds === null || $seconds == 0) {
+
+            return $this->predis->set($key, $value);
+        } else {
+
+            return $this->predis->setex($key, $seconds, $value);
+        }
+
     }
 
     /**
