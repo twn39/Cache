@@ -2,18 +2,15 @@
 
 namespace Monster\Cache;
 
-use Monster\Cache\Handlers\Handler;
-
 class Cache
 {
     private $handler;
 
     /**
      * Cache constructor.
-     *
-     * @param Handler $handler
+     * @param \Monster\Cache\HandleInterface $handler
      */
-    public function __construct(Handler $handler)
+    public function __construct(HandleInterface $handler)
     {
         $this->handler = $handler;
     }

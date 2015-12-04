@@ -2,7 +2,9 @@
 
 namespace Monster\Cache\Handlers;
 
-class Memcached extends Handler
+use Monster\Cache\HandleInterface;
+
+class Memcached implements HandleInterface
 {
     private $memcached;
 

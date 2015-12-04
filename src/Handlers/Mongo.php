@@ -2,7 +2,9 @@
 
 namespace Monster\Cache\Handlers;
 
-class Mongo extends Handler
+use Monster\Cache\HandleInterface;
+
+class Mongo implements HandleInterface
 {
     /**
      * @param array $keys

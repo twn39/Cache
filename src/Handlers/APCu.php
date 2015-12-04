@@ -2,7 +2,9 @@
 
 namespace Monster\Cache\Handlers;
 
-class APCu extends Handler
+use Monster\Cache\HandleInterface;
+
+class APCu implements HandleInterface
 {
     private $apcu;
 
