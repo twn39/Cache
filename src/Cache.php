@@ -62,6 +62,19 @@ class Cache
 
     /**
      * @param $key
+     * @param $value
+     * @param $seconds
+     * @return bool
+     */
+    public function add($key, $value, $seconds)
+    {
+        $this->handler->add($key, $value, $seconds);
+
+        return true;
+    }
+
+    /**
+     * @param $key
      * @param int $offset
      *
      * @return int
@@ -194,5 +207,27 @@ class Cache
         $this->delete($key);
 
         return $value;
+    }
+
+    /**
+     * @param $key
+     * @param $seconds
+     * @return bool
+     */
+    public function touch($key, $seconds)
+    {
+        $this->handler->touch($key, $seconds);
+
+        return true;
+    }
+
+    /**
+     * @return bool
+     */
+    public function flush()
+    {
+        $this->handler->flush();
+
+        return true;
     }
 }
