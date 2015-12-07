@@ -35,7 +35,7 @@ class APCu implements HandlerInterface
      */
     public function set($key, $value, $seconds)
     {
-        return apcu_add($key, $value, $seconds);
+        return apcu_store($key, $value, $seconds);
     }
 
     /**
@@ -85,9 +85,7 @@ class APCu implements HandlerInterface
      */
     public function add($key, $value, $seconds)
     {
-        if (!$this->exists($key)) {
-            $this->set($key, $value, $seconds);
-        }
+        apcu_add($key, $value, $seconds);
 
         return true;
     }

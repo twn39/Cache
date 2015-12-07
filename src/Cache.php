@@ -28,6 +28,18 @@ class Cache
     }
 
     /**
+     * @param array $items
+     * @param $seconds
+     * @return bool
+     */
+    public function setMulti(array $items, $seconds)
+    {
+        $this->handler->setMulti($items, $seconds);
+
+        return true;
+    }
+
+    /**
      * @param $key
      *
      * @return mixed
@@ -35,6 +47,17 @@ class Cache
     public function get($key)
     {
         return $this->handler->get($key);
+    }
+
+    /**
+     * @param array $keys
+     * @return mixed
+     */
+    public function getMulti(array $keys)
+    {
+        $values = $this->handler->getMulti($keys);
+
+        return $values;
     }
 
     /**
