@@ -8,9 +8,9 @@ class Cache
 
     /**
      * Cache constructor.
-     * @param \Monster\Cache\HandleInterface $handler
+     * @param HandlerInterface $handler
      */
-    public function __construct(HandleInterface $handler)
+    public function __construct(HandlerInterface $handler)
     {
         $this->handler = $handler;
     }

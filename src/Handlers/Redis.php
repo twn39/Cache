@@ -3,9 +3,9 @@
 namespace Monster\Cache\Handlers;
 
 use Predis\Client;
-use Monster\Cache\HandleInterface;
+use Monster\Cache\HandlerInterface;
 
-class Redis implements HandleInterface
+class Redis implements HandlerInterface
 {
     private $predis;
 

@@ -2,7 +2,7 @@
 
 namespace Monster\Cache;
 
-interface HandleInterface
+interface HandlerInterface
 {
     /**
      * get cache.
